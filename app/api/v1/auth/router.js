@@ -1,7 +1,8 @@
 const express = require('express');
-const { signinCMS } = require('./controller');
+const { signinCMS, signupUser } = require('./controller');
 const router = express();
 
-router.post('/auth/signin', signinCMS);
+router.post('/signin', signinCMS);
+router.post('/signup', signupUser);
 
 module.exports = router;

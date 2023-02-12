@@ -22,7 +22,7 @@ const authenticateUser = async (req, res, next) => {
       email: payload.email,
       role: payload.role,
       name: payload.name,
-      id: payload.id,
+      id: payload.userId,
     };
 
     next();

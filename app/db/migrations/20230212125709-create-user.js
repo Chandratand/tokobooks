@@ -15,11 +15,14 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
+      email: {
+        type: Sequelize.STRING,
+      },
       password: {
         type: Sequelize.STRING,
       },
       role: {
-        type: Sequelize.ENUM(['owner', 'admin']),
+        type: Sequelize.ENUM(['admin', 'kasir']),
       },
       createdAt: {
         allowNull: false,

@@ -6,8 +6,8 @@ const logger = require('morgan');
 const app = express();
 
 //router
-const stylistsRouter = require('./app/api/v1/stylists/router');
 const authRouter = require('./app/api/v1/auth/router');
+const categoriesRouter = require('./app/api/v1/categories/router');
 
 const v1 = '/api/v1';
 
@@ -23,12 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
   res.status(200).json({
-    message: 'welcome to api s',
+    message: 'welcome to api TOKOBOOKS',
   });
 });
 
-app.use(`${v1}/cms`, stylistsRouter);
-app.use(`${v1}/cms`, authRouter);
+app.use(`${v1}`, authRouter);
+app.use(`${v1}`, categoriesRouter);
 
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);

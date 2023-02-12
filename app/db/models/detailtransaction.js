@@ -15,9 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   DetailTransaction.init({
     transaction: DataTypes.INTEGER,
-    product: DataTypes.INTEGER,
-    productName: DataTypes.STRING,
-    price: DataTypes.INTEGER,
+    user: DataTypes.INTEGER,
+    book: DataTypes.INTEGER,
+    titleBook: DataTypes.STRING,
+    imageBook: DataTypes.STRING,
+    priceBook: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER
   }, {
     sequelize,

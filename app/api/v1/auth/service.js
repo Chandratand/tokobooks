@@ -21,5 +21,25 @@ const signin = async (req) => {
 
   return { token, id: result.id, role: result.role, email: result.email };
 };
+const signup = async (req) => {
+  const { name, email, password, confirmPassword } = req.body;
 
-module.exports = { signin };
+  if (password !== confirmPassword) throw new BadRequestError("Password doesn't match");
+
+  const checkEmail = await User.findOne({
+    where: { email: email },
+  });
+  console.log('checkEmail');
+  console.log(email);
+  console.log(checkEmail);
+
+  if (checkEmail) throw new BadRequestError('Email registered');
+
+  const user = await User.create({ name, email, password: bcrypt.hashSync(password, 10), role: 'admin' });
+
+  delete user.dataValues.password;
+
+  return { user };
+};
+
+module.exports = { signin, signup };
