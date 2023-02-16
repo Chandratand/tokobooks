@@ -2,8 +2,6 @@ const { Category } = require('../../../db/models');
 const { BadRequestError, NotFoundError } = require('../../../errors');
 
 const getAllCategories = async (req) => {
-  console.log('req.user');
-  console.log(req.user);
   const result = await Category.findAll({
     where: {
       user: req.user.id,
@@ -25,18 +23,6 @@ const createCategories = async (req) => {
 
   return result;
 };
-
-// const getOneCategories = async (req) => {
-//   const { id } = req.params;
-
-//   const result = await Categories.findByPk(id, {
-//     attributes: { exclude: ['createdAt', 'updatedAt'] },
-//   });
-
-//   if (!result) throw new NotFoundError(`Tidak ada Categories dengan id : ${id}`);
-
-//   return result;
-// };
 
 const updateCategories = async (req) => {
   const { id } = req.params;
