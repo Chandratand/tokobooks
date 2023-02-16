@@ -3,7 +3,7 @@ const { NotFoundError } = require('../../../errors');
 const { Op } = require('sequelize');
 
 const getAllBooks = async (req) => {
-  const { title = '' } = req.query;
+  const { title = '', category = '' } = req.query;
 
   let condition = {
     user: req.user.id,
@@ -15,6 +15,12 @@ const getAllBooks = async (req) => {
       title: {
         [Op.like]: `%${title}%`,
       },
+    };
+  }
+  if (category !== '') {
+    condition = {
+      ...condition,
+      category: category,
     };
   }
 

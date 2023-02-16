@@ -10,6 +10,7 @@ const authRouter = require('./app/api/v1/auth/router');
 const categoriesRouter = require('./app/api/v1/categories/router');
 const booksRouter = require('./app/api/v1/books/router');
 const uploadRouter = require('./app/api/v1/uploads/router');
+const checkoutRouter = require('./app/api/v1/checkout/router');
 
 const v1 = '/api/v1';
 
@@ -33,6 +34,7 @@ app.use(`${v1}`, authRouter);
 app.use(`${v1}`, categoriesRouter);
 app.use(`${v1}`, booksRouter);
 app.use(`${v1}`, uploadRouter);
+app.use(`${v1}`, checkoutRouter);
 
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);
