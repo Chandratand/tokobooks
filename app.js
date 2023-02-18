@@ -8,7 +8,7 @@ const app = express();
 
 //router
 const authRouter = require('./app/api/v1/auth/router');
-// const categoriesRouter = require('./app/api/v1/categories/router');
+const categoriesRouter = require('./app/api/v1/Categories/router');
 const booksRouter = require('./app/api/v1/books/router');
 const uploadRouter = require('./app/api/v1/uploads/router');
 const checkoutRouter = require('./app/api/v1/checkout/router');
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(`${v1}`, authRouter);
-// app.use(`${v1}`, categoriesRouter);
+app.use(`${v1}`, categoriesRouter);
 app.use(`${v1}`, booksRouter);
 app.use(`${v1}`, uploadRouter);
 app.use(`${v1}`, checkoutRouter);
