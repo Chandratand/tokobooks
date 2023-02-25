@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { getAllBooks, createBooks, updateBooks, deleteBooks } = require('./service');
+const { getAllBooks, createBooks, updateBooks, deleteBooks, getOneBooks } = require('./service');
 
 const read = async (req, res, next) => {
   try {
@@ -7,6 +7,19 @@ const read = async (req, res, next) => {
 
     res.status(StatusCodes.OK).json({
       message: 'Get books success',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const readDetailBook = async (req, res, next) => {
+  try {
+    const result = await getOneBooks(req);
+
+    res.status(StatusCodes.OK).json({
+      message: "Get book's detail success",
       data: result,
     });
   } catch (error) {
@@ -57,4 +70,5 @@ module.exports = {
   create,
   destroy,
   update,
+  readDetailBook,
 };

@@ -38,6 +38,21 @@ const getAllBooks = async (req) => {
   return result;
 };
 
+const getOneBooks = async (req) => {
+  const { id } = req.params;
+  const result = await Book.findByPk(id, {
+    include: {
+      model: Category,
+      attributes: ['id', 'name'],
+    },
+    attributes: {
+      exclude: ['createdAt', 'updatedAt', 'category'],
+    },
+  });
+
+  return result;
+};
+
 const createBooks = async (req) => {
   const { title, price, author, category, published, stock, image } = req.body;
   let user = req.user.id;
@@ -115,4 +130,5 @@ module.exports = {
   createBooks,
   updateBooks,
   deleteBooks,
+  getOneBooks,
 };
