@@ -62,9 +62,15 @@ const createTransaction = async (req, t) => {
 
   const detailTransaction = await DetailTransaction.bulkCreate(payload, { transaction: t });
 
+  const result = {
+    ...transaction.dataValues,
+    detailTransaction: null,
+  };
+  result.detailTransaction = detailTransaction.map((item) => ({ ...item.dataValues }));
+
   await t.commit();
 
-  return detailTransaction;
+  return result;
 };
 
 module.exports = {
